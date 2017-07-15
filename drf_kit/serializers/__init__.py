@@ -1,1 +1,2 @@
+from dynamic_model_field import DynamicModelFieldSerializer
 from timestamped import TimestampedSerializer
