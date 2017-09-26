@@ -10,13 +10,20 @@ class TimestampedModel(models.Model):
         abstract = True
 
     def increment(self, attribute):
-        assert isinstance(attribute, int)
+        if getattr(self, attribute) is None:
+            setattr(self, attribute, 0)
 
-        attribute = F(attribute) + 1
-        setattr(self, attribute)
-        self.save()
+        setattr(self, attribute, F(attribute) + 1)
+        self.save(update_fields=[attribute])
+
+    def decrement(self, attribute):
+        if getattr(self, attribute) is None:
+            setattr(self, attribute, 0)
+
+        setattr(self, attribute, F(attribute) - 1)
+        self.save(update_fields=[attribute])
 
     def update_attributes(self, **kwargs):
-        for attribute, value in enumerate(kwargs):
-            setattr(self, attribute)
-        self.save()
+        for attribute, value in kwargs.items():
+            setattr(self, attribute, value)
+        self.save(update_fields=kwargs.keys())
