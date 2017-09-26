@@ -1,1 +1,1 @@
-from timestamped import TimestampedModel
+from .timestamped import TimestampedModel
