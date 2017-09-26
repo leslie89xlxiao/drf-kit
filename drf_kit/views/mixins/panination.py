@@ -1,4 +1,4 @@
-from drf_kit.panination import Pagination
+from drf_kit.views.pagination import Pagination
 
 
 class PaginationMixin(object):
