@@ -1,0 +1,1 @@
+from .browsable_api_without_forms import BrowsableAPIRendererWithoutForms
